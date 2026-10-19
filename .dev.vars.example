@@ -1,0 +1,5 @@
+# Cloudflare Pages Functions (local dev) — copy to .dev.vars
+# These are server-only secrets used to sign Cloudinary uploads.
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=

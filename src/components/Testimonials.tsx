@@ -1,22 +1,33 @@
 import { Section } from "./Section";
-
-const quotes = [
-  { q: "Muaz delivers modern and functional systems with excellent UI design and strong backend logic.", a: "Client" },
-  { q: "Very dedicated developer with strong attention to detail and performance.", a: "Client" },
-];
+import { useTestimonials } from "@/hooks/useContent";
 
 export function Testimonials() {
+  const { data } = useTestimonials();
+  const visible = data.filter((t) => t.published !== false);
+
   return (
     <Section
       eyebrow="Testimonials"
-      title={<>What people <span className="text-gradient">say.</span></>}
+      title={
+        <>
+          What people <span className="text-gradient">say.</span>
+        </>
+      }
     >
       <div className="grid md:grid-cols-2 gap-6">
-        {quotes.map((t, i) => (
-          <figure key={i} className="bg-gradient-card border border-border rounded-3xl p-8 card-shadow">
+        {visible.map((t) => (
+          <figure
+            key={t.id}
+            className="bg-gradient-card border border-border rounded-3xl p-8 card-shadow"
+          >
             <div className="text-primary text-5xl leading-none mb-2">"</div>
-            <blockquote className="text-lg leading-relaxed text-foreground/90">{t.q}</blockquote>
-            <figcaption className="mt-6 text-sm text-muted-foreground">— {t.a}</figcaption>
+            <blockquote className="text-lg leading-relaxed text-foreground/90">
+              {t.quote}
+            </blockquote>
+            <figcaption className="mt-6 text-sm text-muted-foreground">
+              — {t.author}
+              {t.role ? `, ${t.role}` : ""}
+            </figcaption>
           </figure>
         ))}
       </div>

@@ -13,7 +13,9 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="#top" className="flex items-center gap-2 font-bold text-lg">
           <Sparkle size={22} />
-          <span>Muaz<span className="text-primary">.</span></span>
+          <span>
+            Muaz<span className="text-primary">.</span>
+          </span>
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
           {nav.map((n) => (

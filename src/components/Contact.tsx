@@ -1,13 +1,10 @@
 import { Sparkle } from "./Sparkle";
-
-const links = [
-  { label: "Email", value: "muaz@example.com", href: "mailto:muaz@example.com" },
-  { label: "GitHub", value: "github.com/yourusername", href: "https://github.com/yourusername" },
-  { label: "LinkedIn", value: "linkedin.com/in/yourusername", href: "https://linkedin.com/in/yourusername" },
-  { label: "Portfolio", value: "yourportfolio.com", href: "https://yourportfolio.com" },
-];
+import { useSiteContent } from "@/hooks/useContent";
 
 export function Contact() {
+  const { data } = useSiteContent();
+  const { contact } = data;
+
   return (
     <section id="contact" className="px-6 py-24 relative">
       <div className="max-w-5xl mx-auto relative">
@@ -30,20 +27,22 @@ export function Contact() {
           </p>
 
           <a
-            href="mailto:muaz@example.com"
+            href={`mailto:${contact.email}`}
             className="mt-8 inline-flex rounded-full bg-primary text-primary-foreground px-8 py-3.5 font-semibold glow hover:opacity-90 transition"
           >
             Start a Project →
           </a>
 
           <div className="mt-12 grid sm:grid-cols-2 md:grid-cols-4 gap-4 text-left">
-            {links.map((l) => (
+            {contact.links.map((l) => (
               <a
                 key={l.label}
                 href={l.href}
                 className="block bg-background/40 border border-border rounded-2xl p-4 hover:border-primary/40 transition"
               >
-                <div className="text-xs uppercase tracking-wider text-muted-foreground">{l.label}</div>
+                <div className="text-xs uppercase tracking-wider text-muted-foreground">
+                  {l.label}
+                </div>
                 <div className="text-sm mt-1 truncate">{l.value}</div>
               </a>
             ))}
@@ -51,8 +50,10 @@ export function Contact() {
         </div>
 
         <footer className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-muted-foreground">
-          <div>© {new Date().getFullYear()} Muaz Kedir. Built with care.</div>
-          <div>Full-stack developer · React · Django · PostgreSQL</div>
+          <div>
+            © {new Date().getFullYear()} {data.hero.name}. Built with care.
+          </div>
+          <div>{contact.footerNote}</div>
         </footer>
       </div>
     </section>

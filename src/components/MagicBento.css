@@ -6,7 +6,7 @@
   grid-auto-flow: row dense;
   width: 100%;
   color: var(--mb-ink);
-  font-feature-settings: 'tnum' 0;
+  font-feature-settings: "tnum" 0;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -58,7 +58,7 @@
   transform: translate3d(0, 16px, 0) scale(0.97);
 }
 
-.magic-bento[data-intro] .magic-bento__cell[data-state='in'] {
+.magic-bento[data-intro] .magic-bento__cell[data-state="in"] {
   opacity: 1;
   transform: none;
   transition:
@@ -81,8 +81,8 @@
   text-decoration: none;
   isolation: isolate;
   outline: none;
-  transform: perspective(900px) translate3d(var(--mb-tx, 0px), var(--mb-ty, 0px), 0) rotateX(var(--mb-rx, 0deg))
-    rotateY(var(--mb-ry, 0deg)) scale(var(--mb-press, 1));
+  transform: perspective(900px) translate3d(var(--mb-tx, 0px), var(--mb-ty, 0px), 0)
+    rotateX(var(--mb-rx, 0deg)) rotateY(var(--mb-ry, 0deg)) scale(var(--mb-press, 1));
   user-select: none;
   -webkit-user-select: none;
 }
@@ -185,11 +185,16 @@
     radial-gradient(
       circle at var(--mb-wx, -999px) var(--mb-wy, -999px),
       rgba(var(--mb-glow-rgb), 0) calc(var(--mb-wr, 0px) - 110px),
-      rgba(var(--mb-glow-rgb), calc(var(--mb-glow-alpha) * var(--mb-wa, 0) * 0.1)) calc(var(--mb-wr, 0px) - 80px),
-      rgba(var(--mb-glow-rgb), calc(var(--mb-glow-alpha) * var(--mb-wa, 0) * 0.32)) calc(var(--mb-wr, 0px) - 52px),
-      rgba(var(--mb-glow-rgb), calc(var(--mb-glow-alpha) * var(--mb-wa, 0) * 0.68)) calc(var(--mb-wr, 0px) - 28px),
-      rgba(var(--mb-glow-rgb), calc(var(--mb-glow-alpha) * var(--mb-wa, 0) * 0.94)) calc(var(--mb-wr, 0px) - 10px),
-      rgba(var(--mb-glow-rgb), calc(var(--mb-glow-alpha) * var(--mb-wa, 0))) calc(var(--mb-wr, 0px) - 3px),
+      rgba(var(--mb-glow-rgb), calc(var(--mb-glow-alpha) * var(--mb-wa, 0) * 0.1))
+        calc(var(--mb-wr, 0px) - 80px),
+      rgba(var(--mb-glow-rgb), calc(var(--mb-glow-alpha) * var(--mb-wa, 0) * 0.32))
+        calc(var(--mb-wr, 0px) - 52px),
+      rgba(var(--mb-glow-rgb), calc(var(--mb-glow-alpha) * var(--mb-wa, 0) * 0.68))
+        calc(var(--mb-wr, 0px) - 28px),
+      rgba(var(--mb-glow-rgb), calc(var(--mb-glow-alpha) * var(--mb-wa, 0) * 0.94))
+        calc(var(--mb-wr, 0px) - 10px),
+      rgba(var(--mb-glow-rgb), calc(var(--mb-glow-alpha) * var(--mb-wa, 0)))
+        calc(var(--mb-wr, 0px) - 3px),
       rgba(var(--mb-glow-rgb), 0) var(--mb-wr, 0px)
     );
   -webkit-mask:
@@ -317,7 +322,7 @@
 }
 
 .magic-bento__tile::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
@@ -396,7 +401,11 @@
   bottom: 0;
   left: 0;
   width: 1px;
-  background: linear-gradient(to bottom, rgba(var(--mb-accent-rgb), 0), rgba(var(--mb-accent-rgb), 0.35));
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--mb-accent-rgb), 0),
+    rgba(var(--mb-accent-rgb), 0.35)
+  );
   opacity: 0;
   pointer-events: none;
   transition: opacity 180ms ease;
@@ -820,7 +829,7 @@
 }
 
 .magic-bento__switch::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 2px;
   left: 2px;
@@ -844,7 +853,8 @@
 
 .magic-bento[data-motion] .magic-bento__chart-line {
   stroke-dasharray: 1;
-  animation: magic-bento-draw 1100ms cubic-bezier(0.65, 0, 0.35, 1) calc(var(--mb-delay) + 220ms) both paused;
+  animation: magic-bento-draw 1100ms cubic-bezier(0.65, 0, 0.35, 1) calc(var(--mb-delay) + 220ms)
+    both paused;
 }
 
 .magic-bento[data-motion] .magic-bento__chart-area {
@@ -852,17 +862,20 @@
 }
 
 .magic-bento[data-motion] .magic-bento__bar {
-  animation: magic-bento-grow 760ms var(--mb-spring) calc(var(--mb-delay) + 200ms + var(--i) * 55ms) both paused;
+  animation: magic-bento-grow 760ms var(--mb-spring) calc(var(--mb-delay) + 200ms + var(--i) * 55ms)
+    both paused;
 }
 
 .magic-bento[data-motion] .magic-bento__cursor {
   animation:
-    magic-bento-pop 420ms var(--mb-spring) calc(var(--mb-delay) + 600ms + var(--i) * 160ms) both paused,
+    magic-bento-pop 420ms var(--mb-spring) calc(var(--mb-delay) + 600ms + var(--i) * 160ms) both
+      paused,
     var(--path) 9s ease-in-out calc(var(--i) * -3s) infinite paused;
 }
 
 .magic-bento[data-motion] .magic-bento__selection {
-  animation: magic-bento-select 900ms cubic-bezier(0.65, 0, 0.35, 1) calc(var(--mb-delay) + 760ms) both paused;
+  animation: magic-bento-select 900ms cubic-bezier(0.65, 0, 0.35, 1) calc(var(--mb-delay) + 760ms)
+    both paused;
 }
 
 .magic-bento[data-motion] .magic-bento__caret {
@@ -870,7 +883,8 @@
 }
 
 .magic-bento[data-motion] .magic-bento__pending {
-  animation: magic-bento-wait 1ms linear calc(var(--mb-delay) + 360ms + var(--i) * 520ms) both paused;
+  animation: magic-bento-wait 1ms linear calc(var(--mb-delay) + 360ms + var(--i) * 520ms) both
+    paused;
 }
 
 .magic-bento[data-motion] .magic-bento__spinner {
@@ -880,24 +894,29 @@
 }
 
 .magic-bento[data-motion] .magic-bento__done {
-  animation: magic-bento-check 420ms var(--mb-spring) calc(var(--mb-delay) + 880ms + var(--i) * 520ms) both paused;
+  animation: magic-bento-check 420ms var(--mb-spring)
+    calc(var(--mb-delay) + 880ms + var(--i) * 520ms) both paused;
 }
 
 .magic-bento[data-motion] .magic-bento__step-time {
-  animation: magic-bento-fade 300ms ease calc(var(--mb-delay) + 880ms + var(--i) * 520ms) both paused;
+  animation: magic-bento-fade 300ms ease calc(var(--mb-delay) + 880ms + var(--i) * 520ms) both
+    paused;
 }
 
 .magic-bento[data-motion] .magic-bento__rail-fill {
-  animation: magic-bento-rail calc(var(--n) * 520ms) linear calc(var(--mb-delay) + 360ms) both paused;
+  animation: magic-bento-rail calc(var(--n) * 520ms) linear calc(var(--mb-delay) + 360ms) both
+    paused;
 }
 
 .magic-bento[data-motion] .magic-bento__hub-node {
-  animation: magic-bento-pop 520ms var(--mb-spring) calc(var(--mb-delay) + 200ms + var(--i) * 70ms) both paused;
+  animation: magic-bento-pop 520ms var(--mb-spring) calc(var(--mb-delay) + 200ms + var(--i) * 70ms)
+    both paused;
 }
 
 .magic-bento[data-motion] .magic-bento__hub-links line {
   stroke-dasharray: 1;
-  animation: magic-bento-draw 700ms cubic-bezier(0.65, 0, 0.35, 1) calc(var(--mb-delay) + 360ms) both paused;
+  animation: magic-bento-draw 700ms cubic-bezier(0.65, 0, 0.35, 1) calc(var(--mb-delay) + 360ms)
+    both paused;
 }
 
 .magic-bento[data-motion] .magic-bento__card[data-active] .magic-bento__packet {
@@ -905,11 +924,13 @@
 }
 
 .magic-bento[data-motion] .magic-bento__switch {
-  animation: magic-bento-switch-track 420ms ease calc(var(--mb-delay) + 520ms + var(--i) * 200ms) both paused;
+  animation: magic-bento-switch-track 420ms ease calc(var(--mb-delay) + 520ms + var(--i) * 200ms)
+    both paused;
 }
 
 .magic-bento[data-motion] .magic-bento__switch::after {
-  animation: magic-bento-switch-knob 520ms var(--mb-spring) calc(var(--mb-delay) + 520ms + var(--i) * 200ms) both paused;
+  animation: magic-bento-switch-knob 520ms var(--mb-spring)
+    calc(var(--mb-delay) + 520ms + var(--i) * 200ms) both paused;
 }
 
 .magic-bento[data-motion] .magic-bento__switch[data-off],
@@ -918,7 +939,7 @@
 }
 
 .magic-bento[data-motion]
-  .magic-bento__cell[data-state='in']
+  .magic-bento__cell[data-state="in"]
   :is(
     .magic-bento__chart-line,
     .magic-bento__chart-area,
@@ -936,15 +957,18 @@
   animation-play-state: running;
 }
 
-.magic-bento[data-motion] .magic-bento__cell[data-state='in'] .magic-bento__switch::after {
+.magic-bento[data-motion] .magic-bento__cell[data-state="in"] .magic-bento__switch::after {
   animation-play-state: running;
 }
 
-.magic-bento[data-motion] .magic-bento__cell[data-state='in'] .magic-bento__cursor {
+.magic-bento[data-motion] .magic-bento__cell[data-state="in"] .magic-bento__cursor {
   animation-play-state: running, paused;
 }
 
-.magic-bento[data-motion] .magic-bento__cell[data-state='in'] .magic-bento__card[data-active] .magic-bento__cursor {
+.magic-bento[data-motion]
+  .magic-bento__cell[data-state="in"]
+  .magic-bento__card[data-active]
+  .magic-bento__cursor {
   animation-play-state: running, running;
 }
 
@@ -952,7 +976,7 @@
   animation-play-state: running;
 }
 
-.magic-bento[data-motion] .magic-bento__cell[data-state='in'] .magic-bento__spinner {
+.magic-bento[data-motion] .magic-bento__cell[data-state="in"] .magic-bento__spinner {
   animation-play-state: running, running;
 }
 

@@ -1,0 +1,53 @@
+rules_version = '2';
+
+// Firestore security rules for the portfolio CMS.
+//
+// Public: anyone can READ content (the live site fetches it).
+// Private: only the signed-in admin can WRITE.
+//
+// IMPORTANT: replace the email below with the admin account you create in
+// Firebase Authentication (Authentication -> Users -> Add user).
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email == "you@example.com";
+    }
+
+    match /site/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /projects/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /features/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /skillGroups/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /skillBars/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /testimonials/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

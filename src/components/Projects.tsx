@@ -1,61 +1,23 @@
 import { Section } from "./Section";
 import MagicBento, { type MagicBentoItem } from "./MagicBento";
+import { useProjects } from "@/hooks/useContent";
+import type { Project } from "@/lib/content/types";
 
-const projects = [
-  {
-    name: "Multi-Cafeteria SaaS Platform",
-    desc: "SaaS where a super admin manages multiple cafeteria admins. Each cafeteria gets its own dashboard for menus, orders, blogs, and customers.",
-    features: [
-      "Multi-tenancy",
-      "Role-based auth",
-      "Order management",
-      "Blog CMS",
-      "Admin hierarchy",
-    ],
-    tech: ["React", "Django REST", "PostgreSQL", "Tailwind"],
-    accent: "from-[oklch(0.88_0.18_95)] to-[oklch(0.7_0.2_60)]",
-  },
-  {
-    name: "Online Auction & Bidding Platform",
-    desc: "Modern auction with live bidding, wallet, escrow payments, dispute management, and an animated winner celebration UI.",
-    features: [
-      "Real-time bidding",
-      "Wallet system",
-      "Escrow flow",
-      "Dispute handling",
-      "Multi-language",
-    ],
-    tech: ["React", "Django", "PostgreSQL", "Anime.js"],
-    accent: "from-[oklch(0.75_0.18_180)] to-[oklch(0.55_0.2_240)]",
-  },
-  {
-    name: "School Management System",
-    desc: "Complete platform for administrators, teachers, students, and parents — attendance, schedules, assignments, and dashboards.",
-    features: ["Student mgmt", "Schedules", "Attendance", "Assignments", "Parent dashboard"],
-    tech: ["Django REST", "React", "PostgreSQL"],
-    accent: "from-[oklch(0.78_0.18_140)] to-[oklch(0.6_0.2_180)]",
-  },
-  {
-    name: "Nejah Online Quran Learning",
-    desc: "Online Quran learning platform managing students, teachers, classes, schedules, and live online learning activities.",
-    features: ["Student registration", "Teacher mgmt", "Live classes", "Progress tracking"],
-    tech: ["React", "Django", "PostgreSQL"],
-    accent: "from-[oklch(0.8_0.18_310)] to-[oklch(0.6_0.22_350)]",
-  },
-];
-
-const items: MagicBentoItem[] = projects.map((p, i) => ({
-  id: p.name,
-  title: p.name,
-  content: (
+function projectContent(p: Project, index: number) {
+  return (
     <div className="group relative flex min-h-0 flex-1 flex-col">
-      <div
-        className={`pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-gradient-to-br ${p.accent} opacity-20 blur-3xl transition-opacity duration-300 group-hover:opacity-30`}
-      />
+      {!p.imageUrl && (
+        <div
+          className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full opacity-20 blur-3xl transition-opacity duration-300 group-hover:opacity-30"
+          style={{
+            backgroundImage: `linear-gradient(to bottom right, ${p.accentFrom}, ${p.accentTo})`,
+          }}
+        />
+      )}
       <div className="relative flex min-h-0 flex-1 flex-col">
-        <div className="text-xs text-muted-foreground mb-2">Project 0{i + 1}</div>
+        <div className="text-xs text-muted-foreground mb-2">Project 0{index + 1}</div>
         <h3 className="text-xl font-bold mb-3">{p.name}</h3>
-        <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+        <p className="text-sm text-muted-foreground leading-relaxed">{p.description}</p>
 
         <div className="mt-5">
           <div className="text-xs uppercase tracking-wider text-muted-foreground mb-3">
@@ -83,10 +45,20 @@ const items: MagicBentoItem[] = projects.map((p, i) => ({
         </div>
       </div>
     </div>
-  ),
-}));
+  );
+}
 
 export function Projects() {
+  const { data: projects } = useProjects();
+  const visible = projects.filter((p) => p.published !== false);
+
+  const items: MagicBentoItem[] = visible.map((p, i) => ({
+    id: p.id,
+    title: p.name,
+    image: p.imageUrl,
+    content: projectContent(p, i),
+  }));
+
   return (
     <Section
       id="projects"
@@ -98,15 +70,19 @@ export function Projects() {
       }
       subtitle="A selection of full-stack systems and SaaS platforms I've designed and shipped."
     >
-      <MagicBento
-        items={items}
-        columns={2}
-        rowHeight={340}
-        gap={20}
-        radius={24}
-        theme="dark"
-        glowColor="#fdd506"
-      />
+      {items.length > 0 ? (
+        <MagicBento
+          items={items}
+          columns={2}
+          rowHeight={340}
+          gap={20}
+          radius={24}
+          theme="dark"
+          glowColor="#fdd506"
+        />
+      ) : (
+        <p className="text-muted-foreground">No projects published yet.</p>
+      )}
     </Section>
   );
 }

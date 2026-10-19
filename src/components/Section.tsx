@@ -1,4 +1,10 @@
-type Props = { eyebrow?: string; title: React.ReactNode; subtitle?: string; id?: string; children: React.ReactNode };
+type Props = {
+  eyebrow?: string;
+  title: React.ReactNode;
+  subtitle?: string;
+  id?: string;
+  children: React.ReactNode;
+};
 
 export function Section({ eyebrow, title, subtitle, id, children }: Props) {
   return (
@@ -10,9 +16,7 @@ export function Section({ eyebrow, title, subtitle, id, children }: Props) {
               {eyebrow}
             </div>
           )}
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
-            {title}
-          </h2>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">{title}</h2>
           {subtitle && <p className="mt-4 text-lg text-muted-foreground">{subtitle}</p>}
         </div>
         {children}
